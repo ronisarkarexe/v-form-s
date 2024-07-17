@@ -1,12 +1,15 @@
 import cors from "cors";
 import express, { Application, NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
+import { Routers } from "./router";
 const app: Application = express();
 
 // cors and middleware
 app.use(cors({ credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use("/api/v1", Routers);
 
 interface GET_DEFAULT_METHOD {
   status: number;
