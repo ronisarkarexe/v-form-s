@@ -21,6 +21,60 @@ const createUser = async (req: Request, res: Response) => {
   }
 };
 
+const getAllUsers = async (req: Request, res: Response) => {
+  try {
+    const result = await UserService.getAllUsers();
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "OK!",
+      data: result,
+    });
+  } catch (error) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      message: "Fail to get users!",
+    });
+  }
+};
+
+const getUser = async (req: Request, res: Response) => {
+  try {
+    const body: IUser = req.body;
+    const { id } = req.params;
+    const result = await UserService.updateUser(id, body);
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "OK!",
+      data: result,
+    });
+  } catch (error) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      message: "Fail to get users!",
+    });
+  }
+};
+
+const updateUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const result = await UserService.getUser(id);
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "OK!",
+      data: result,
+    });
+  } catch (error) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      message: "Fail to get users!",
+    });
+  }
+};
+
 export const UserController = {
   createUser,
+  getAllUsers,
+  getUser,
+  updateUser,
 };

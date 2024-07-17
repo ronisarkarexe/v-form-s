@@ -10,7 +10,7 @@ export const UserSchema: Schema<IUser> = new Schema<IUser, UserModel>(
     position: { type: String, required: false },
     password: { type: String, required: true },
     rule: { type: String, required: true },
-    status: { type: String, required: true, default: "Active" },
+    status: { type: String, default: "Active" },
   },
   {
     timestamps: true,
