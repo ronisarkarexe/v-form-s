@@ -6,7 +6,7 @@ import { Validator } from "./user.validation";
 
 const router = express.Router();
 
-router.get("/lists", auth(), UserController.getAllUsers);
+router.get("/lists", UserController.getAllUsers);
 
 router.get("/:id", auth(), UserController.getUser);
 
@@ -17,5 +17,7 @@ router.post(
 );
 
 router.patch("/:id", auth(), UserController.updateUser);
+
+router.delete("/:id", auth(), UserController.deleteUser);
 
 export const UserRouter = router;

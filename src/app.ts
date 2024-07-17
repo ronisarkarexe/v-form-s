@@ -2,11 +2,14 @@ import cors from "cors";
 import express, { Application, NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
 import { Routers } from "./router";
+import cookieParser from "cookie-parser";
+
 const app: Application = express();
 
 // cors and middleware
-app.use(cors({ credentials: true }));
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/v1", Routers);

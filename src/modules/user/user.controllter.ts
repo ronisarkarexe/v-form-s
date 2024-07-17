@@ -72,9 +72,26 @@ const updateUser = async (req: Request, res: Response) => {
   }
 };
 
+const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    await UserService.deleteUser(id);
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "User deleted successfully!",
+    });
+  } catch (error) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      message: "Fail to get users!",
+    });
+  }
+};
+
 export const UserController = {
   createUser,
   getAllUsers,
   getUser,
   updateUser,
+  deleteUser,
 };
