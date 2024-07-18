@@ -7,12 +7,12 @@ import { AppointmentService } from "./appointment.service";
 const createAppointment = async (req: Request, res: Response) => {
   try {
     const body: IAppointment = req.body;
-    await AppointmentService.createAppointment(body);
+    const result = await AppointmentService.createAppointment(body);
     sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
       message: "Appointment created successfully!",
-      data: "result",
+      data: result,
     });
   } catch (error) {
     res.status(httpStatus.BAD_REQUEST).json({
