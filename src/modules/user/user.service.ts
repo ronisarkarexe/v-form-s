@@ -7,12 +7,14 @@ const createUser = async (payload: IUser): Promise<IUser> => {
 };
 
 const getAllUsers = async (): Promise<IUser[]> => {
-  const result = await User.find({});
+  const result = await User.find({}).populate("appointments").populate("tests");
   return result;
 };
 
 const getUser = async (payload: string): Promise<IUser | null> => {
-  const result = await User.findOne({ _id: payload });
+  const result = await User.findOne({ _id: payload })
+    .populate("appointments")
+    .populate("tests");
   return result;
 };
 

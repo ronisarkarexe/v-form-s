@@ -1,4 +1,6 @@
 import { Model } from "mongoose";
+import { IAppointment } from "../appointment/appointment.interface";
+import { ITestDocument } from "../test/test.interface";
 
 export interface IUser {
   name: string;
@@ -7,6 +9,8 @@ export interface IUser {
   position: string;
   rule: string;
   status: string;
+  appointments?: IAppointment[];
+  tests?: ITestDocument[];
 }
 
 export type UserModel = Model<IUser, object>;

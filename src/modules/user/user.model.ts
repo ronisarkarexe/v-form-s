@@ -2,6 +2,8 @@ import { Schema, model } from "mongoose";
 import { IUser, UserModel } from "./user.interface";
 import bcrypt from "bcrypt";
 import config from "../../config";
+import { AppointmentSchema } from "../appointment/appointment.model";
+import { TestSchema } from "../test/test.model";
 
 export const UserSchema: Schema<IUser> = new Schema<IUser, UserModel>(
   {
@@ -11,6 +13,8 @@ export const UserSchema: Schema<IUser> = new Schema<IUser, UserModel>(
     password: { type: String, required: true },
     rule: { type: String, required: true },
     status: { type: String, default: "Active" },
+    appointments: { type: [AppointmentSchema], default: [] },
+    tests: { type: [TestSchema], default: [] },
   },
   {
     timestamps: true,
